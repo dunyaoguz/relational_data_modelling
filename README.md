@@ -16,7 +16,7 @@ We start with two categories of data: song data and log data. Song data is the m
 * `create_tables.py`: Spins up a local postgres database called sparkifydb and creates the tables in the schema
 * `sql_queries.py`: Contains all the queries used to create, drop and insert data into our tables 
 * `test.ipnyb`: Used to test whether our database operations worked successfully 
-* `etl.ipnyb`: ETL done only on one file from each of data repositories. This sectiom is mainly for exploring and testing before fully automating the ETL 
+* `etl.ipnyb`: ETL done only on one file from each of data repositories. This section is mainly for exploring and testing before fully automating the ETL 
 * `etl.py`: Processes the entirety of log and song data
 
 ### Want to run these scripts on your own machine? 
@@ -25,7 +25,7 @@ We start with two categories of data: song data and log data. Song data is the m
 - `cd sparkify_data_modelling` 
 - `brew install postgres` (if not already installed)
 - `pip install psycopg2` & `pip install psycopg2-binary` (if not already installed)
-- Replace the username argument in the postgres connection string with your own username (`create_tables.py`: line 7 and line 19, `test.ipnyb`: line 2, `etl.ipnyb`: line 8, `etl.py`: line 98) 
+- Replace the username argument in the postgres connection string with your own username in each of the files (`create_tables.py`: line 7 and line 19, `test.ipnyb`: line 2, `etl.ipnyb`: line 8, `etl.py`: line 98) 
 - `python create_tables.py`
 - `python etl.py` 
 
