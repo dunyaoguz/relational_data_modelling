@@ -5,8 +5,10 @@ import pandas as pd
 import json
 from sql_queries import *
 
-
 def process_song_file(cur, filepath):
+    """
+    For a given JSON file from the songs dataset, extracts information on the song and the artist, and loads it on the songs and artists tables.
+    """
     # open song file
     with open(filepath) as file:
         song_dict = json.load(file)
@@ -28,6 +30,9 @@ def process_song_file(cur, filepath):
         print(f'Could not insert {t} due to unique constraint of the primary key artist_id')
 
 def process_log_file(cur, filepath):
+    """
+    For a given JSON file from the logs dataset, extracts information on the time, user and the songplay activity, and load it on the time, users and songplays tables.
+    """
     # open log file
     df = pd.read_json(filepath, lines=True)
 
@@ -76,6 +81,9 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    """
+    Finds all the files in the directories, and processes each one through the two functions above. 
+    """
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
