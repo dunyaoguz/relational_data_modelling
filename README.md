@@ -1,7 +1,7 @@
 # sparkify_data_modelling
 
 ## Project Summary
-In this project, I build a database schema and an ETL pipeline for a music streaming app called Sparkify. 
+In this project, I build a relational database schema and an ETL pipeline for a music streaming app called Sparkify. 
 
 We start with two categories of data: song data and log data. Song data is the metadata we have on artists and songs, such as artist name, artist country, song title, song duration, etc. Log data is the event logs on user activity coming from the app, such as which song a particular user listened to. 
 
