@@ -17,17 +17,15 @@ def process_song_file(cur, filepath):
     song_data = {k:v for (k,v) in song_dict.items() if k in ['song_id', 'title', 'artist_id', 'year', 'duration']}
     try:
         cur.execute(song_table_insert, list(song_data.values()))
-    except:
-        t = song_data['title']
-        print(f'Could not insert {t} due to unique constraint of the primary key song_id')
+    except Exception as e:
+        print(e)
 
     # insert artist record
     artist_data = {k:v for (k,v) in song_dict.items() if k in ['artist_id', 'artist_name', 'artist_location', 'artist_latitude', 'artist_longitude']}
     try:
         cur.execute(artist_table_insert, list(artist_data.values()))
-    except:
-        t = artist_data['artist_name']
-        print(f'Could not insert {t} due to unique constraint of the primary key artist_id')
+    except Exception as e:
+        print(e)
 
 def process_log_file(cur, filepath):
     """
@@ -50,8 +48,8 @@ def process_log_file(cur, filepath):
     for i, row in time_df.iterrows():
         try:
             cur.execute(time_table_insert, list(row))
-        except:
-            print(f'Could not insert time data {row.start_time} due to unique constraint of the primary key start_time')
+        except Exception as e:
+            print(e)
 
     # load user table
     user_df = df[['userId', 'firstName', 'lastName', 'gender', 'level']].drop_duplicates()
@@ -60,8 +58,8 @@ def process_log_file(cur, filepath):
     for i, row in user_df.iterrows():
         try:
             cur.execute(user_table_insert, row)
-        except:
-            print(f'Could not insert user with user_id {row.userId} due to unique constraint of the primary key user_id')
+        except Exception as e:
+            print(e)
 
     # insert songplay records
     for index, row in df.iterrows():
@@ -77,12 +75,14 @@ def process_log_file(cur, filepath):
 
         # insert songplay record
         songplay_data = (row.ts, row.userId, row.level, songid, artistid, row.sessionId, row.location, row.userAgent)
-        cur.execute(songplay_table_insert, songplay_data)
-
+        try:
+            cur.execute(songplay_table_insert, songplay_data)
+        except Exception as e:
+                print(e)
 
 def process_data(cur, conn, filepath, func):
     """
-    Finds all the files in the directories, and processes each one through the two functions above. 
+    Finds all the files in the directories, and processes each one through the two functions above.
     """
     # get all files matching extension from directory
     all_files = []
