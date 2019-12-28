@@ -3,6 +3,9 @@ from sql_queries import create_table_queries, drop_table_queries
 
 
 def create_database():
+    """
+    Spins up a local postgres database called sparkifydb. If already exists, drops the existing one and creates a new one.
+    """
     # connect to default database
     conn = psycopg2.connect(database='postgres', user='dunya', port='5432')
     conn.set_session(autocommit=True)
@@ -23,12 +26,18 @@ def create_database():
 
 
 def drop_tables(cur, conn):
+    """
+    Drops all the tables in schema. 
+    """
     for query in drop_table_queries:
         cur.execute(query)
         conn.commit()
 
 
 def create_tables(cur, conn):
+    """
+    Creates the tables in the schema.
+    """
     for query in create_table_queries:
         cur.execute(query)
         conn.commit()
