@@ -19,16 +19,6 @@ We start with two categories of data: song data and log data. Song data is the m
 * `etl.ipnyb`: ETL done only on one file from each of data repositories. This section is mainly for exploring and testing before fully automating the ETL 
 * `etl.py`: Processes the entirety of log and song data
 
-### Want to run these scripts on your own machine? 
-
-- `git clone https://github.com/dunyaoguz/sparkify_data_modelling` 
-- `cd sparkify_data_modelling` 
-- `brew install postgres` (if not already installed)
-- `pip install psycopg2` & `pip install psycopg2-binary` (if not already installed)
-- Replace the username argument in the postgres connection string with your own username in each of the files (`create_tables.py`: line 7 and line 19, `test.ipnyb`: line 2, `etl.ipnyb`: line 8, `etl.py`: line 98) 
-- `python create_tables.py`
-- `python etl.py` 
-
 ### Tech Stack:
 * glob
 * psycopg2
